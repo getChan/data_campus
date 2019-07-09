@@ -249,7 +249,77 @@ INNER JOIN 테이블명 ON 조건식
 
 ## SQLite
 
+[주피터 노트북 참고]('./RDBMS.ipynb')
+
 # ORM, RE
 
-# JSON, XML
+## ORM 소개
 
+Object Realtional Mapping
+
+객체와 관계형 데이터베이스의 데이터를 자동으로 매핑(연결)해주는 것을 말한다.
+
+테이블 간의 관계보다 **데이터베이스에 대한 처리**에 집중
+
+- 객체-관계로 접근
+
+```java
+public class Question{
+    private long qid;
+    private String title;
+    [...]
+    
+    public processTags(String Tag){
+    }
+}
+
+public class Tag{
+    private long tid;
+    private String tag;
+    [...]
+    
+    public add(String tag){
+    }
+}
+```
+
+| Web Framework | None           | Flask        | Flask      | Django     |
+| ------------- | -------------- | ------------ | ---------- | ---------- |
+| ORM           | **SQLAlchemy** | SQLAlchemy   | SQLAlchemy | Django ORM |
+| connector     | (builtin)      | Mysql-python | psycopg    | psycopg    |
+| RDBS          | SQLite         | MySQL        | PostgreSQL | PostgreSQL |
+
+## SQLAlchemy
+
+- Architecture
+- SQLAlchemy CORE
+  - Engine
+    - Starting point for any SQLAlchemy application
+  - Dialect
+    - communicate with various types of DBAPI implementations and databases
+- [실습 노트북]('./ORM, RE.ipynb')
+
+## Regular Expression
+
+- Why use RE?
+  - 무지하게 빨라여
+  -  NLP 쓰게 되면 필수이다
+  - String searching / input validation
+- But, There is a **learning curve**
+
+General concepts
+
+Meta Characters
+
+re
+
+- re.compile
+  - 패턴을 객체로 바꿔줌
+- re.search
+  - 문자열 전체를 검색		
+- re.match
+  - 처음부터 검색. `^` 필요 없다.
+- re.split
+  - 특정 패턴이 나오면 자른다
+
+# JSON, XML
