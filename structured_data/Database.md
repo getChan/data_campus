@@ -249,7 +249,7 @@ INNER JOIN 테이블명 ON 조건식
 
 ## SQLite
 
-[주피터 노트북 참고]('./RDBMS.ipynb')
+[주피터 노트북 참고](./RDBMS.ipynb)
 
 # ORM, RE
 
@@ -297,7 +297,7 @@ public class Tag{
     - Starting point for any SQLAlchemy application
   - Dialect
     - communicate with various types of DBAPI implementations and databases
-- [실습 노트북]('./ORM, RE.ipynb')
+- [실습 노트북](./ORM, RE.ipynb)
 
 ## Regular Expression
 
