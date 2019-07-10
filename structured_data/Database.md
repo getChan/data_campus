@@ -323,3 +323,119 @@ re
   - 특정 패턴이 나오면 자른다
 
 # JSON, XML
+
+## JSON
+
+why use JSON?
+
+- 사람이 읽기도 좋고, machine이 읽기도 좋다.
+
+- 무적권 `"` 써야 한다.
+
+Easy processing
+
+Storage size
+
+- character 수가 xml보다 매우 적다.
+
+JSON API
+
+JSON Data Type
+
+- String, number, object, array, true, false, null
+
+계층형 구조
+
+- 파싱 할 수 있다
+
+Parse
+
+```html
+<script>
+    var str = '{"name":"Kim", "age":30, "car":["Ray", "Spark"]}';
+    
+    console.log(str);
+    console.log(str.name);
+    
+    obj = JSON.parse(str);
+    
+    console.log(obj);
+    console.log(obj.name);
+</script>
+```
+
+Reviver
+
+- String으로 변환된 Json 객체의
+
+- 각 타입을 원본 타입에 맞게 바꿔줄 수 있다.
+
+```html
+<script>
+    var str = '{"name":"Kim", "age":30, "car":["Ray", "Spark"]}';
+    
+    console.log(str);
+    console.log(str.name);
+    
+    obj = JSON.parse(str, function(k,v){
+        if (typeof(v) == "number")
+            return v.toString();
+        else
+            return v;
+    })
+    console.log(obj);
+    console.log(obj.name);
+</script>
+```
+
+## XML
+
+- **both human and machine readable**
+
+- **standard way of structing data**
+- 모든 언어에서 independant
+- No predefined tags
+  - 명세와 약속이 필요하다
+- Validity
+  - 프로토콜을 지켜야 유효하다
+
+Well formed Documents
+
+- 특징
+  - 반드시 root 노드가 있어야 함
+  - 여는 태그와 닫는 태그의 쌍으로 이루어져 있어야 함 ( html의 경우 쌍 아닐 수도 있다.)
+  - 대소문자 구별한다
+  - 어트리뷰트는 tag의 안에 들어있어야 한다.
+  - 어트리뷰트는 quote로 싸여 있어야 한다.
+
+Valid Documents
+
+- well formed 는 vaild xml과 다르다
+  - DTD - Document Type Definition
+
+DTD
+
+- define the structure of an XML document
+
+- ```xml-dtd
+  <!DOCTYPE note SYSTEM "Note.dtd">
+  ....
+  ```
+
+Namespace
+
+- **avoid  element name confilts**
+
+XML Schema
+
+- DTD의 대안
+- XML로 쓰여짐
+- 확장성이 좋다
+- data types를 지원한다
+- namespace를 지원한다
+
+comparison
+
+- XML : 데이터를 전달하기 위해 설계
+- HTML : 데이터를 display 하기 위해 설계
+
