@@ -76,9 +76,41 @@ REST
   - 지적재산권 침해 여부 주의
   - 민감 정보 수집 주의
 
+#### Urllib
+
+[urllib을 이용한 크롤링](./HTTP, DOM)
+
+## DOM
+
+### BeautifulSoup
+
+[노트북](./DOM)
+
+- ```python
+  find_all(name, attrs, recursive, string, limit, **kwargs)
+  find_all(recursive=false) # 자식만 찾는다.
+  ```
+
 
 
 # CSS, XPath, 공공데이터
+
+## Selector
+
+- ```css
+  selector Declaration
+  h1       {color:red; font-size:10;}
+          property:value property:Value
+  ```
+
+- id는 단 하나만 존재
+
+- 부가적으로 class를 쓸 수 있다. 다중상속이 가능하다. `.`중첩하여 접근 가능
+- ID : `#어쩌고`
+- CLASS :`.어쩌고`
+- 태그 : 태그
+- 자손 : 공백
+- 자식 : `>`
 
 # Crawling
 
