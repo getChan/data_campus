@@ -230,3 +230,62 @@ None
   'b'
   ```
 
+- 역참조는 이전에 잡았던 그룹이 현재 위치에서 또 발견될 때 사용된다.
+
+  ```python
+  >>> p = re.compile(r'\b(\w+)\s+\1\b') # '\1'은 1번 그룹과 같은 문자열을 매칭
+  >>> p.search('Paris in the the spring').group()
+  'the the'
+  ```
+
+### Non-capturing and Named Groups
+
+- 그룹핑은 하되, 캡처는 하지 않을 수 있다. `(?:...)`
+
+```python
+>>> m = re.match("([abc])+", "abc")
+>>> m.groups()
+('c',)
+>>> m = re.match("(?:[abc])+", "abc")
+>>> m.groups()
+()
+```
+
+- 그룹을 번호가 아닌 이름으로 접근할 수 있다. *named group* `(?P<name> ...)`
+
+```python
+>>> p = re.compile(r'(?P<word>\b\w+\b)')
+>>> m = p.search( '(((( Lots of punctuation )))' )
+>>> m.group('word')
+'Lots'
+>>> m.group(1)
+'Lots'
+```
+
+### Lookahead Assertions
+
+- another zero-width assersion
+- `(?=...)`
+  - 현재 위치에서 매치되면 성공
+  - 한번 시도되면 끝난다.
+- `(?!...)`
+  - 현재 위치에서 매치되지 않으면 성공
+- 파일 확장자를 나눠보는 예제
+  -  ex) `news.rc`
+    - `.*[.].*$`
+  - 만약 확장자가 `bat`이 아닌 파일 이름과 매치하려면?
+    - `.*[.][^b].*$` 틀리다. b로 시작하는 확장자일 수 있음
+    - `.*[.]([^b]..|.[^a].|..[^t])$`
+      - 너무 복잡하다
+  - `.*[.](?!bat$)[^.]*$` 
+    - `bat$`이 현재 위치에서 매치되지 않으면 패턴의 나머지 시도
+    - `bat$`이 매치되면 전체 패턴은 fail한다.
+  - Assertion을 이용하면 패턴 추가하기에 유용
+    - `.*[.](?!bat$|exe$)[^.]*$`
+
+## Modifying Strings
+
+### Splitting Strings
+
+- **Split**(*string[, maxsplit=0]*)
+- 
