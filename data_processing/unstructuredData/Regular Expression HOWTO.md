@@ -288,4 +288,73 @@ None
 ### Splitting Strings
 
 - **Split**(*string[, maxsplit=0]*)
-- 
+
+  - 정규표현식과 매치하는 string을 split한다.
+
+  - ```python
+    >>> p = re.compile(r'\W+')
+    >>> p.split('This is a test, short and sweet, of split().')
+    ['This', 'is', 'a', 'test', 'short', 'and', 'sweet', 'of', 'split', '']
+    >>> p.split('This is a test, short and sweet, of split().', 3)
+    ['This', 'is', 'a', 'test, short and sweet, of split().']
+    ```
+
+  - split 하는 구분자를 알고 싶으면
+
+  - ```python
+    >>> p = re.compile(r'\W+')
+    >>> p2 = re.compile(r'(\W+)')
+    >>> p.split('This... is a test.')
+    ['This', 'is', 'a', 'test', '']
+    >>> p2.split('This... is a test.')
+    ['This', '... ', 'is', ' ', 'a', ' ', 'test', '.', '']
+    ```
+
+  - 모듈 수준 함수인 `re.split()`도 사용할 수 있다.
+
+### Search and Replace
+
+- **Sub**(*replacement, string[, count=0])*
+
+  - 매치되는 string을 replacement로 바꾼다.
+
+  ```python
+  >>> p = re.compile('(blue|white|red)')
+  >>> p.sub('colour', 'blue socks and red shoes')
+  'colour socks and colour shoes'
+  >>> p.sub('colour', 'blue socks and red shoes', count=1)
+  'colour socks and red shoes'
+  ```
+
+## Common Problems
+
+### Use String Method
+
+re 모듈을 사용하지 않고도 문자열 방법으로 해결할수 있다. 그게 더 빠르다.
+
+`replace()` 와 `translate()` 등이 있다.
+
+### match() VS search()
+
+- `match()`는 문자열의 시작부터
+- `search()`는 모든 스트링을 탐색한다.
+
+### Greedy VS Non-Greedy
+
+- `*?, +?, ??, {m, n}?` 같은 lazy 방법을 통해 매치할 수 있다.
+
+### Using re.VERBOSE
+
+- re.VERBOSE 플래그를 설정하면 긴 패턴에서 가독성을 높일 수 있다.
+
+```python
+pat = re.compile(r"""
+ \s*                 # Skip leading whitespace
+ (?P<header>[^:]+)   # Header name
+ \s* :               # Whitespace, and a colon
+ (?P<value>.*?)      # The header's value -- *? used to
+                     # lose the following trailing whitespace
+ \s*$                # Trailing whitespace to end-of-line
+""", re.VERBOSE)
+```
+
